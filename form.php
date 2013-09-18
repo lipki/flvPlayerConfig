@@ -26,7 +26,7 @@ if( $fileid ) {
 	$f = $core->media->getFile($fileid);
 	$flv = $f->file_url;
 } else
-	$flv = 'http://flv-player.net/fr/medias/KyodaiNoGilga.flv';
+	$flv = 'https://bitbucket.org/lipki/flvplayerconfig/src/9d7dddfde93760ed53424b3a6cd4276d6be2a1af/D2D2_1.flv?at=default';
 
 if (!empty($_POST['saveconfig'])) {
 
@@ -46,38 +46,42 @@ if (!empty($_POST['saveconfig'])) {
 	if( $_POST['srt'] == 'on' ) $args['srt'] = 1;
 	if( $_POST['buffershowbg'] != 'on' ) $args['buffershowbg'] = 0;
 	if( $_POST['showiconplay'] == 'on' ) $args['showiconplay'] = 1;
+	
+	if( !empty($_POST['bgcolor'])         || $_POST['bgcolor']         == "" ) if( $_POST['bgcolor']         != "#ffffff" ) $args['bgcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['bgcolor'])));
+	if( !empty($_POST['bgcolor1'])        || $_POST['bgcolor1']        == "" ) if( $_POST['bgcolor1']        != "#7c7c7c" ) $args['bgcolor1'] = htmlspecialchars  (implode('',explode('#',$_POST['bgcolor1'])));
+	if( !empty($_POST['bgcolor2'])        || $_POST['bgcolor2']        == "" ) if( $_POST['bgcolor2']        != "#333333" ) $args['bgcolor2'] = htmlspecialchars  (implode('',explode('#',$_POST['bgcolor2'])));
+	if( !empty($_POST['playercolor'])     || $_POST['playercolor']     == "" ) if( $_POST['playercolor']     != "#000000" ) $args['playercolor'] = htmlspecialchars  (implode('',explode('#',$_POST['playercolor'])));
+	if( !empty($_POST['loadingcolor'])    || $_POST['loadingcolor']    == "" ) if( $_POST['loadingcolor']    != "#ffff00" ) $args['loadingcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['loadingcolor'])));
+	if( !empty($_POST['buttoncolor'])     || $_POST['buttoncolor']     == "" ) if( $_POST['buttoncolor']     != "#ffffff" ) $args['buttoncolor'] = htmlspecialchars  (implode('',explode('#',$_POST['buttoncolor'])));
+	if( !empty($_POST['buttonovercolor']) || $_POST['buttonovercolor'] == "" ) if( $_POST['buttonovercolor'] != "#ffff00" ) $args['buttonovercolor'] = htmlspecialchars  (implode('',explode('#',$_POST['buttonovercolor'])));
+	if( !empty($_POST['slidercolor1'])    || $_POST['slidercolor1']    == "" ) if( $_POST['slidercolor1']    != "#cccccc" ) $args['slidercolor1'] = htmlspecialchars  (implode('',explode('#',$_POST['slidercolor1'])));
+	if( !empty($_POST['slidercolor2'])    || $_POST['slidercolor2']    == "" ) if( $_POST['slidercolor2']    != "#888888" ) $args['slidercolor2'] = htmlspecialchars  (implode('',explode('#',$_POST['slidercolor2'])));
+	if( !empty($_POST['sliderovercolor']) || $_POST['sliderovercolor'] == "" ) if( $_POST['sliderovercolor'] != "#ffff00" ) $args['sliderovercolor'] = htmlspecialchars  (implode('',explode('#',$_POST['sliderovercolor'])));
+	if( !empty($_POST['buffercolor'])     || $_POST['buffercolor']     == "" ) if( $_POST['buffercolor']     != "#ffffff" ) $args['buffercolor'] = htmlspecialchars  (implode('',explode('#',$_POST['buffercolor'])));
+	if( !empty($_POST['bufferbgcolor'])   || $_POST['bufferbgcolor']   == "" ) if( $_POST['bufferbgcolor']   != "#000000" ) $args['bufferbgcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['bufferbgcolor'])));
+	if( !empty($_POST['titlecolor'])      || $_POST['titlecolor']      == "" ) if( $_POST['titlecolor']      != "#ffffff" ) $args['titlecolor'] = htmlspecialchars  (implode('',explode('#',$_POST['titlecolor'])));
+	if( !empty($_POST['srtcolor'])        || $_POST['srtcolor']        == "" ) if( $_POST['srtcolor']        != "#ffffff" ) $args['srtcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['srtcolor'])));
+	if( !empty($_POST['srtbgcolor'])      || $_POST['srtbgcolor']      == "" ) if( $_POST['srtbgcolor']      != "#000000" ) $args['srtbgcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['srtbgcolor'])));
+	if( !empty($_POST['iconplaycolor'])   || $_POST['iconplaycolor']   == "" ) if( $_POST['iconplaycolor']   != "#ffffff" ) $args['iconplaycolor'] = htmlspecialchars  (implode('',explode('#',$_POST['iconplaycolor'])));
+	if( !empty($_POST['iconplaybgcolor']) || $_POST['iconplaybgcolor'] == "" ) if( $_POST['iconplaybgcolor'] != "#000000" ) $args['iconplaybgcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['iconplaybgcolor'])));
+	if( !empty($_POST['videobgcolor'])    || $_POST['videobgcolor']    == "" ) if( $_POST['videobgcolor']    != "#000000" ) $args['videobgcolor'] = htmlspecialchars  (implode('',explode('#',$_POST['videobgcolor'])));
 
 	if( !empty($_POST['title']) )  $args['title'] = htmlspecialchars  ($_POST['title']);
 	if( !empty($_POST['startimage']) )  $args['startimage'] = htmlspecialchars  ($_POST['startimage']);
 	if( !empty($_POST['width']) || $_POST['width'] === 0 ) if( $_POST['width'] != 320 ) $args['width'] = $_POST['width'];
 	if( !empty($_POST['height']) || $_POST['height'] === 0 ) if( $_POST['height'] != 240 ) $args['height'] = $_POST['height'];
-	if( !empty($_POST['align']) || $_POST['align'] === 0 ) $args['align'] = $_POST['align'];
+	if( !empty($_POST['align']) || $_POST['align'] === 0 ) if( $_POST['align'] != "none" ) $args['align'] = $_POST['align'];
 	if( !empty($_POST['volume']) || $_POST['volume'] === 0 ) if( $_POST['volume'] != 100 ) $args['volume'] = $_POST['volume'];
 	if( !empty($_POST['skin']) )  $args['skin'] = htmlspecialchars  ($_POST['skin']);
 	if( !empty($_POST['margin']) || $_POST['margin'] === 0 ) if( $_POST['margin'] != 5 ) $args['margin'] = $_POST['margin'];
-	if( !empty($_POST['bgcolor']) || $_POST['bgcolor'] == "" ) if( $_POST['bgcolor'] != "ffffff" ) $args['bgcolor'] = htmlspecialchars  ($_POST['bgcolor']);
-	if( !empty($_POST['bgcolor1']) || $_POST['bgcolor1'] == "" ) if( $_POST['bgcolor1'] != "7c7c7c" ) $args['bgcolor1'] = htmlspecialchars  ($_POST['bgcolor1']);
-	if( !empty($_POST['bgcolor2']) || $_POST['bgcolor2'] == "" ) if( $_POST['bgcolor2'] != "333333" ) $args['bgcolor2'] = htmlspecialchars  ($_POST['bgcolor2']);
 	if( !empty($_POST['showtime']) || $_POST['showtime'] === 0 ) if( $_POST['showtime'] != 0 ) $args['showtime'] = $_POST['showtime'];
 	if( !empty($_POST['showplayer']) || $_POST['showplayer'] === "" ) if( $_POST['showplayer'] != "autohide" ) $args['showplayer'] = htmlspecialchars  ($_POST['showplayer']);
 	if( !empty($_POST['showloading']) || $_POST['showloading'] == "" ) if( $_POST['showloading'] != "autohide" ) $args['showloading'] = htmlspecialchars  ($_POST['showloading']);
 	if( !empty($_POST['playertimeout']) || $_POST['playertimeout'] === 0 ) if( $_POST['playertimeout'] != 1500 ) $args['playertimeout'] = $_POST['playertimeout'];
-	if( !empty($_POST['playercolor']) || $_POST['playercolor'] == "" ) if( $_POST['playercolor'] != "000000" ) $args['playercolor'] = htmlspecialchars  ($_POST['playercolor']);
 	if( !empty($_POST['playeralpha']) || $_POST['playeralpha'] === 0 ) if( $_POST['playeralpha'] != 100 ) $args['playeralpha'] = $_POST['playeralpha'];
-	if( !empty($_POST['loadingcolor']) || $_POST['loadingcolor'] == "" ) if( $_POST['loadingcolor'] != "ffff00" ) $args['loadingcolor'] = htmlspecialchars  ($_POST['loadingcolor']);
-	if( !empty($_POST['buttoncolor']) || $_POST['buttoncolor'] == "" ) if( $_POST['buttoncolor'] != "ffffff" ) $args['buttoncolor'] = htmlspecialchars  ($_POST['buttoncolor']);
-	if( !empty($_POST['buttonovercolor']) || $_POST['buttonovercolor'] == "" ) if( $_POST['buttonovercolor'] != "ffff00" ) $args['buttonovercolor'] = htmlspecialchars  ($_POST['buttonovercolor']);
-	if( !empty($_POST['slidercolor1']) || $_POST['slidercolor1'] == "" ) if( $_POST['slidercolor1'] != "cccccc" ) $args['slidercolor1'] = htmlspecialchars  ($_POST['slidercolor1']);
-	if( !empty($_POST['slidercolor2']) || $_POST['slidercolor2'] == "" ) if( $_POST['slidercolor2'] != "888888" ) $args['slidercolor2'] = htmlspecialchars  ($_POST['slidercolor2']);
-	if( !empty($_POST['sliderovercolor']) || $_POST['sliderovercolor'] == "" ) if( $_POST['sliderovercolor'] != "ffff00" ) $args['sliderovercolor'] = htmlspecialchars  ($_POST['sliderovercolor']);
 	if( !empty($_POST['buffer']) || $_POST['buffer'] === 0 ) if( $_POST['buffer'] != 5 ) $args['buffer'] = $_POST['buffer'];
 	if( !empty($_POST['buffermessage']) || $_POST['buffermessage'] == "" ) if( $_POST['buffermessage'] != "Buffering _n_" ) $args['buffermessage'] = htmlspecialchars  ($_POST['buffermessage']);
-	if( !empty($_POST['buffercolor']) || $_POST['buffercolor'] == "" ) if( $_POST['buffercolor'] != "ffffff" ) $args['buffercolor'] = htmlspecialchars  ($_POST['buffercolor']);
-	if( !empty($_POST['bufferbgcolor']) || $_POST['bufferbgcolor'] == "" ) if( $_POST['bufferbgcolor'] != "000000" ) $args['bufferbgcolor'] = htmlspecialchars  ($_POST['bufferbgcolor']);
-	if( !empty($_POST['titlecolor']) || $_POST['titlecolor'] == "" ) if( $_POST['titlecolor'] != "ffffff" ) $args['titlecolor'] = htmlspecialchars  ($_POST['titlecolor']);
 	if( !empty($_POST['titlesize']) || $_POST['titlesize'] === 0 ) if( $_POST['titlesize'] != 20 ) $args['titlesize'] = $_POST['titlesize'];
-	if( !empty($_POST['srtcolor']) || $_POST['srtcolor'] == "" ) if( $_POST['srtcolor'] != "ffffff" ) $args['srtcolor'] = htmlspecialchars  ($_POST['srtcolor']);
-	if( !empty($_POST['srtbgcolor']) || $_POST['srtbgcolor'] == "" ) if( $_POST['srtbgcolor'] != "000000" ) $args['srtbgcolor'] = htmlspecialchars  ($_POST['srtbgcolor']);
 	if( !empty($_POST['srtsize']) || $_POST['srtsize'] === 0 ) if( $_POST['srtsize'] != 11 ) $args['srtsize'] = $_POST['srtsize'];
 	if( !empty($_POST['srturl']) )  $args['srturl'] = htmlspecialchars  ($_POST['srturl']);
 	if( !empty($_POST['onclick']) || $_POST['onclick'] == "" ) if( $_POST['onclick'] != "playpause" ) $args['onclick'] = htmlspecialchars  ($_POST['onclick']);
@@ -89,15 +93,12 @@ if (!empty($_POST['saveconfig'])) {
 	if( !empty($_POST['top3']) )  $args['top3'] = htmlspecialchars  ($_POST['top3']);
 	if( !empty($_POST['top4']) )  $args['top4'] = htmlspecialchars  ($_POST['top4']);
 	if( !empty($_POST['top5']) )  $args['top5'] = htmlspecialchars  ($_POST['top5']);
-	if( !empty($_POST['iconplaycolor']) || $_POST['iconplaycolor'] == "" ) if( $_POST['iconplaycolor'] != "ffffff" ) $args['iconplaycolor'] = htmlspecialchars  ($_POST['iconplaycolor']);
-	if( !empty($_POST['iconplaybgcolor']) || $_POST['iconplaybgcolor'] == "" ) if( $_POST['iconplaybgcolor'] != "000000" ) $args['iconplaybgcolor'] = htmlspecialchars  ($_POST['iconplaybgcolor']);
 	if( !empty($_POST['iconplaybgalpha']) || $_POST['iconplaybgalpha'] === 0 ) if( $_POST['iconplaybgalpha'] != 75 ) $args['iconplaybgalpha'] = $_POST['iconplaybgalpha'];
 	if( !empty($_POST['showmouse']) || $_POST['showmouse'] == "" ) if( $_POST['showmouse'] != "always" ) $args['showmouse'] = htmlspecialchars  ($_POST['showmouse']);
-	if( !empty($_POST['videobgcolor']) || $_POST['videobgcolor'] == "" ) if( $_POST['videobgcolor'] != "000000" ) $args['videobgcolor'] = htmlspecialchars  ($_POST['videobgcolor']);
 	if( !empty($_POST['netconnection']) )  $args['netconnection'] = htmlspecialchars  ($_POST['netconnection']);
 	
 	$core->blog->settings->themes->put('flvplayer_style', serialize($args), 'string', 'flvplayer config');
-	http::redirect($p_url.'&tab='.$default_tab.'&saveconfig=1');
+	//http::redirect($p_url.'&tab='.$default_tab.'&saveconfig=1');
 }
 
 $args = unserialize($core->blog->settings->themes->flvplayer_style);
@@ -178,12 +179,9 @@ if (isset($_GET['saveconfig']))
 <html>
 <head>
 	<title><?php echo __('FLV Player Config'); ?></title>
-	<link rel="stylesheet" media="screen" type="text/css" href="index.php?pf=flvplayerconfig/js/colorpicker/css/colorpicker.css" />
-	<link rel="stylesheet" media="screen" type="text/css" href="index.php?pf=flvplayerconfig/style.css" />
 	<?php echo dcPage::jsPageTabs($default_tab); ?>
 	<?php if( $popup ) { echo dcPage::jsLoad('index.php?pf=flvplayerconfig/js/popup.js'); } ?>
-	<?php echo dcPage::jsLoad('index.php?pf=flvplayerconfig/js/colorpicker/js/colorpicker.js'); ?>
-	<?php echo dcPage::jsLoad('index.php?pf=flvplayerconfig/js/form.js'); ?>
+	<?php echo dcPage::jsColorPicker(); ?>
 </head>
 <body>
 	
@@ -220,8 +218,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="rapide" title="<?php echo __('Fast'); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Video size'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Video size'); ?></h3>
 							<p><label for="width"><?php echo __('Width'); ?> :
 								<input type="text" value="<?php echo $args['width']; ?>" class="int" name="width" id="width">
 							</label></p>
@@ -229,11 +227,11 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['height']; ?>" class="int" name="height" id="height">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Disposition'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Disposition'); ?></h3>
 							<p><label for="align"><?php echo __('Disposition'); ?> :
 								<select id="align" name="align">
 									<option <?php echo $args['align']=="none"? 'selected="selected"':''; ?> value="none"><?php echo __('None'); ?></option>
@@ -243,7 +241,7 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -253,8 +251,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="generale" title="<?php echo __('General'); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('General'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('General'); ?></h3>
 							<p><label for="title"><?php echo __('Title'); ?> :
 								<input type="text" value="<?php echo $args['title']; ?>" class="text" name="title" id="title">
 							</label></p>
@@ -307,11 +305,11 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Miscellaneous'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Miscellaneous'); ?></h3>
 							<p><label for="showmouse"><?php echo __('Show mouse'); ?> :
 								<select id="showmouse" name="showmouse">
 									<option <?php echo $args['showmouse']=='autohide'? 'selected="selected"':''; ?> value="autohide"><?php echo __('autohide'); ?></option>
@@ -320,7 +318,7 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<p><label for="videobgcolor"><?php echo __('Video background color'); ?> :
-								<input type="text" value="<?php echo $args['videobgcolor']; ?>" class="color" name="videobgcolor" id="videobgcolor">
+								<input type="text" value="<?php echo '#'.$args['videobgcolor']; ?>" class="colorpicker" name="videobgcolor" id="videobgcolor">
 							</label></p>
 							<p><label for="loadonstop" class="classic">
 								<input name="loadonstop" id="loadonstop" type="checkbox" <?php echo $args['loadonstop']? 'checked="checked"':''; ?>/>
@@ -342,7 +340,7 @@ if (isset($_GET['saveconfig']))
 								<?php echo __('Show title and startimage'); ?>
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -350,8 +348,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="bordure" title="<?php echo __('Border'); ?> & <?php echo __('Title'); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Border'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Border'); ?></h3>
 							<p><label for="skin"><?php echo __('Skin'); ?> :
 								<input type="text" value="<?php echo $args['skin']; ?>" class="url" name="skin" id="skin">
 							</label></p>
@@ -359,22 +357,22 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['margin']; ?>" class="int" name="margin" id="margin">
 							</label></p>
 							<p><label for="bgcolor"><?php echo __('Background color'); ?> :
-								<input type="text" value="<?php echo $args['bgcolor']; ?>" class="color" name="bgcolor" id="bgcolor">
+								<input type="text" value="<?php echo '#'.$args['bgcolor']; ?>" class="colorpicker" name="bgcolor" id="bgcolor">
 							</label></p>
 							<p><label for="bgcolor1"><?php echo __('Background color 1'); ?> :
-								<input type="text" value="<?php echo $args['bgcolor1']; ?>" class="color" name="bgcolor1" id="bgcolor1">
+								<input type="text" value="<?php echo '#'.$args['bgcolor1']; ?>" class="colorpicker" name="bgcolor1" id="bgcolor1">
 							</label></p>
 							<p><label for="bgcolor2"><?php echo __('Background color 2'); ?> :
-								<input type="text" value="<?php echo $args['bgcolor2']; ?>" class="color" name="bgcolor2" id="bgcolor2">
+								<input type="text" value="<?php echo '#'.$args['bgcolor2']; ?>" class="colorpicker" name="bgcolor2" id="bgcolor2">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Title'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Title'); ?></h3>
 							<p><label for="titlecolor"><?php echo __('Title color'); ?> :
-								<input type="text" value="<?php echo $args['titlecolor']; ?>" class="color" name="titlecolor" id="titlecolor">
+								<input type="text" value="<?php echo '#'.$args['titlecolor']; ?>" class="colorpicker" name="titlecolor" id="titlecolor">
 							</label></p>
 							<p><label for="titlesize"><?php echo __('Title size'); ?> :
 								<select id="titlesize" name="titlesize">
@@ -400,18 +398,18 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<br class="clear">
-						</fieldset>
-						<fieldset>
-							<legend><?php echo __('Subtitle'); ?></legend>
+						</div>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Subtitle'); ?></h3>
 							<p><label for="srt" class="classic">
 								<input name="srt" id="srt" type="checkbox" <?php echo $args['srt']? 'checked="checked"':''; ?>/>
 								<?php echo __('Subtitle'); ?>
 							</label></p>
 							<p><label for="srtcolor"><?php echo __('Subtitle color'); ?> :
-								<input type="text" value="<?php echo $args['srtcolor']; ?>" class="color" name="srtcolor" id="srtcolor">
+								<input type="text" value="<?php echo '#'.$args['srtcolor']; ?>" class="colorpicker" name="srtcolor" id="srtcolor">
 							</label></p>
 							<p><label for="srtbgcolor"><?php echo __('Subtitle background color'); ?> :
-								<input type="text" value="<?php echo $args['srtbgcolor']; ?>" class="color" name="srtbgcolor" id="srtbgcolor">
+								<input type="text" value="<?php echo '#'.$args['srtbgcolor']; ?>" class="colorpicker" name="srtbgcolor" id="srtbgcolor">
 							</label></p>
 							<p><label for="srtsize"><?php echo __('Subtitle size'); ?> :
 								<select id="srtsize" name="srtsize">
@@ -433,7 +431,7 @@ if (isset($_GET['saveconfig']))
 								<?php echo(__('Retrieves the URL of your file in the media manager.')); ?>
 							</p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -441,8 +439,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="barredecontrole" title="<?php echo __('Control Bar'); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Control Bar'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Control Bar'); ?></h3>
 							<p><label for="showstop" class="classic">
 								<input name="showstop" id="showstop" type="checkbox" <?php echo $args['showstop']? 'checked="checked"':''; ?>/>
 								<?php echo __('Show stop'); ?>
@@ -484,13 +482,13 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['playertimeout']; ?>" class="int" name="playertimeout" id="playertimeout">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Colors'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Colors'); ?></h3>
 							<p><label for="playercolor"><?php echo __('Player color'); ?> :
-								<input type="text" value="<?php echo $args['playercolor']; ?>" class="color" name="playercolor" id="playercolor">
+								<input type="text" value="<?php echo '#'.$args['playercolor']; ?>" class="colorpicker" name="playercolor" id="playercolor">
 							</label></p>
 							<p><label for="playeralpha"><?php echo __('Player alpha'); ?> :
 								<select id="playeralpha" name="playeralpha">
@@ -502,25 +500,25 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<p><label for="loadingcolor"><?php echo __('Loading color'); ?> :
-								<input type="text" value="<?php echo $args['loadingcolor']; ?>" class="color" name="loadingcolor" id="loadingcolor">
+								<input type="text" value="<?php echo '#'.$args['loadingcolor']; ?>" class="colorpicker" name="loadingcolor" id="loadingcolor">
 							</label></p>
 							<p><label for="buttoncolor"><?php echo __('Button color'); ?> :
-								<input type="text" value="<?php echo $args['buttoncolor']; ?>" class="color" name="buttoncolor" id="buttoncolor">
+								<input type="text" value="<?php echo '#'.$args['buttoncolor']; ?>" class="colorpicker" name="buttoncolor" id="buttoncolor">
 							</label></p>
 							<p><label for="buttonovercolor"><?php echo __('Button over color'); ?> :
-								<input type="text" value="<?php echo $args['buttonovercolor']; ?>" class="color" name="buttonovercolor" id="buttonovercolor">
+								<input type="text" value="<?php echo '#'.$args['buttonovercolor']; ?>" class="colorpicker" name="buttonovercolor" id="buttonovercolor">
 							</label></p>
 							<p><label for="slidercolor1"><?php echo __('Slider color 1'); ?> :
-								<input type="text" value="<?php echo $args['slidercolor1']; ?>" class="color" name="slidercolor1" id="slidercolor1">
+								<input type="text" value="<?php echo '#'.$args['slidercolor1']; ?>" class="colorpicker" name="slidercolor1" id="slidercolor1">
 							</label></p>
 							<p><label for="slidercolor2"><?php echo __('Slider color 2'); ?> :
-								<input type="text" value="<?php echo $args['slidercolor2']; ?>" class="color" name="slidercolor2" id="slidercolor2">
+								<input type="text" value="<?php echo '#'.$args['slidercolor2']; ?>" class="colorpicker" name="slidercolor2" id="slidercolor2">
 							</label></p>
 							<p><label for="sliderovercolor"><?php echo __('Slider over color'); ?> :
-								<input type="text" value="<?php echo $args['sliderovercolor']; ?>" class="color" name="sliderovercolor" id="sliderovercolor">
+								<input type="text" value="<?php echo '#'.$args['sliderovercolor']; ?>" class="colorpicker" name="sliderovercolor" id="sliderovercolor">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -528,8 +526,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="technique" title="<?php echo __('Technical '); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Display Buffer'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Display Buffer'); ?></h3>
 							<p><label for="buffer"><?php echo __('Buffer'); ?> :
 								<select id="buffer" name="buffer">
 									<option <?php echo $args['buffer']==5? 'selected="selected"':''; ?> value="5">5</option>
@@ -543,21 +541,21 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['buffermessage']; ?>" class="text" name="buffermessage" id="buffermessage">
 							</label></p>
 							<p><label for="buffercolor"><?php echo __('Buffer color'); ?> :
-								<input type="text" value="<?php echo $args['buffercolor']; ?>" class="color" name="buffercolor" id="buffercolor">
+								<input type="text" value="<?php echo '#'.$args['buffercolor']; ?>" class="colorpicker" name="buffercolor" id="buffercolor">
 							</label></p>
 							<p><label for="bufferbgcolor"><?php echo __('Buffer background color'); ?> :
-								<input type="text" value="<?php echo $args['bufferbgcolor']; ?>" class="color" name="bufferbgcolor" id="bufferbgcolor">
+								<input type="text" value="<?php echo '#'.$args['bufferbgcolor']; ?>" class="colorpicker" name="bufferbgcolor" id="bufferbgcolor">
 							</label></p>
 							<p><label for="buffershowbg" class="classic">
 								<input name="buffershowbg" id="buffershowbg" type="checkbox" <?php echo $args['buffershowbg']? 'checked="checked"':''; ?>/>
 								<?php echo __('Buffer show background'); ?>
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Controls the mouse'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Controls the mouse'); ?></h3>
 							<p><label for="onclick"><?php echo __('Onclick'); ?> :
 								<input type="text" value="<?php echo $args['onclick']; ?>" class="text" name="onclick" id="onclick">
 							</label></p>
@@ -571,7 +569,7 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['ondoubleclicktarget']; ?>" class="text" name="ondoubleclicktarget" id="ondoubleclicktarget">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -579,8 +577,8 @@ if (isset($_GET['saveconfig']))
 			<div class="multi-part" id="imagespardessuslavideo" title="<?php echo __('Images on the video'); ?> & <?php echo __('The icons of the video'); ?>" >
 				<div class="two-cols">
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('Images on the video'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('Images on the video'); ?></h3>
 							<p><label for="top1"><?php echo __('Top 1'); ?> :
 								<input type="text" value="<?php echo $args['top1']; ?>" class="text" name="top1" id="top1">
 							</label></p>
@@ -597,20 +595,20 @@ if (isset($_GET['saveconfig']))
 								<input type="text" value="<?php echo $args['top5']; ?>" class="text" name="top5" id="top5">
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 					<div class="col">
-						<fieldset>
-							<legend><?php echo __('The icons of the video'); ?></legend>
+						<div class="fieldset">
+							<h3 class="pretty-title"><?php echo __('The icons of the video'); ?></h3>
 							<p><label for="showiconplay" class="classic">
 								<input name="showiconplay" id="showiconplay" type="checkbox" <?php echo $args['showiconplay']? 'checked="checked"':''; ?>/>
 								<?php echo __('Show icon play'); ?>
 							</label></p>
 							<p><label for="iconplaycolor"><?php echo __('Icon play color'); ?> :
-								<input type="text" value="<?php echo $args['iconplaycolor']; ?>" class="color" name="iconplaycolor" id="iconplaycolor">
+								<input type="text" value="<?php echo '#'.$args['iconplaycolor']; ?>" class="colorpicker" name="iconplaycolor" id="iconplaycolor">
 							</label></p>
 							<p><label for="iconplaybgcolor"><?php echo __('Icon play background color'); ?> :
-								<input type="text" value="<?php echo $args['iconplaybgcolor']; ?>" class="color" name="iconplaybgcolor" id="iconplaybgcolor">
+								<input type="text" value="<?php echo '#'.$args['iconplaybgcolor']; ?>" class="colorpicker" name="iconplaybgcolor" id="iconplaybgcolor">
 							</label></p>
 							<p><label for="iconplaybgalpha"><?php echo __('Icon play background alpha'); ?> :
 								<select id="iconplaybgalpha" name="iconplaybgalpha">
@@ -622,7 +620,7 @@ if (isset($_GET['saveconfig']))
 								</select>
 							</label></p>
 							<br class="clear">
-						</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>

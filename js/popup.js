@@ -16,12 +16,14 @@ $(function(){
 	ref = new Object();
 	$("input").add('select').each( function(i) {
 		if ($(this).val() != '' && $(this).attr('id') != '' && $(this).attr('id') != 'flv' && $(this).attr('id') != 'width' && $(this).attr('id') != 'height') {
-			if ($(this).attr('type') == "url")
+			if ($(this).hasClass("url"))
 				ref[$(this).attr('id')] = escape($(this).val());
-			else if ($(this).attr('type') == "int")
+			else if ($(this).hasClass("int"))
 				ref[$(this).attr('id')] = escapeHTML(Number($(this).val()));
-			else if ($(this).attr('type') == "bool")
+			else if ($(this).hasClass("bool"))
 				ref[$(this).attr('id')] = escapeHTML(($(this).val() == "on")?1:0);
+			else if ($(this).hasClass("colorpicker"))
+				ref[$(this).attr('id')] = escapeHTML($(this).val().split('#').join(''));
 			else
 				ref[$(this).attr('id')] = escapeHTML($(this).val());
 		}
@@ -99,12 +101,14 @@ function preview(){
 	var separator = '';
 	$("input").add('select').each( function(i) {
 		if ($(this).val() != '' && $(this).attr('id') != '') {
-			if ($(this).attr('type') == "url")
+			if ($(this).hasClass("url"))
 				out += separator + $(this).attr('id') + '=' + escape($(this).val());
-			else if ($(this).attr('type') == "int")
+			else if ($(this).hasClass("int"))
 				out += separator + $(this).attr('id') + '=' + escapeHTML(Number($(this).val()));
-			else if ($(this).attr('type') == "bool")
+			else if ($(this).hasClass("bool"))
 				out += separator + $(this).attr('id') + '=' + escapeHTML(($(this).val() == "on")?1:0);
+			else if ($(this).hasClass("colorpicker"))
+				out += separator + $(this).attr('id') + '=' + escapeHTML($(this).val().split('#').join(''));
 			else
 				out += separator + $(this).attr('id') + '=' + escapeHTML($(this).val());
 			separator = '&amp;';
