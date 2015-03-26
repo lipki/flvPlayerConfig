@@ -18,8 +18,8 @@
  
 $this->registerModule(
         /* Name */                    "flvplayerconfig",
-        /* Description*/              "Configures flvplayer. A activer dans Paramètres du blog.",
+        /* Description*/             "Configures flvplayer. A activer dans Paramètres du blog.",
         /* Author */                  "kévin Lepeltier [lipki]",
-        /* Version */                 '1.7',
+        /* Version */                 '1.8b',
         /* Permissions */             'admin,usage,contentadmin'
 );

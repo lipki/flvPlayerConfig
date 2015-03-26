@@ -47,8 +47,16 @@ class dcflvplayerconfig {
 		//remplacement suite au passage dans le traducteur Wiki
 		$txt=str_ireplace("&#8221;",'"',$txt);
 		$txt=str_ireplace('<a href="/flvplayer" title="/flvplayer">/flvplayer</a>','[/flvplayer]',$txt);
-		$txt=preg_replace('`(.*flvplayer.*)`e',"str_replace(array('<br/>'), '', '\\1')",$txt);
-		return $txt;
+		//$txt=preg_replace('`(.*flvplayer.*)`e',"str_replace(array('<br/>'), '', '\\1')",$txt);
+		$txt = preg_replace_callback(
+        '`(.*flvplayer.*)`',
+        function ($matches) {
+            return str_replace(array('<br/>'), '', $matches[0]);
+        },
+        $txt
+    );
+    
+    return $txt;
 		
 	}
 	
@@ -72,9 +80,9 @@ class dcflvplayerconfig {
 					$values[$value2] = $tinout[2][$key2];
 				
 				$player = '<div>';
-				if( $values['align'] == 'center' ) $player = '<div style="text-align: center;">';
-				if( $values['align'] == 'left' ) $player = '<div style="float: left; margin: 0 1em 1em 0;">';
-				if( $values['align'] == 'right' ) $player = '<div style="float: right; margin: 0 0 1em 1em;">';
+				if( isset($values['align']) && $values['align'] == 'center' ) $player = '<div style="text-align: center;">';
+				if( isset($values['align']) && $values['align'] == 'left' ) $player = '<div style="float: left; margin: 0 1em 1em 0;">';
+				if( isset($values['align']) && $values['align'] == 'right' ) $player = '<div style="float: right; margin: 0 0 1em 1em;">';
 				
 				$player .= '<object type="application/x-shockwave-flash" data="?pf=player_flv.swf" width="'.$values['width'].'" height="'.$values['height'].'">
 				<param name="movie" value="?pf=player_flv.swf">

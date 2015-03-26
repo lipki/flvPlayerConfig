@@ -89,7 +89,7 @@ if ($core->error->flag()) {
 	'</div>';
 }
 
-echo '<h2>'.html::escapeHTML($core->blog->name).' &rsaquo; <a href="'.html::escapeURL($page_url.'&d=').'">'.__('Media manager').'</a>'.
+echo '<h2><img src="index.php/?pf=flvplayerconfig/icon.png" alt=""> '.html::escapeHTML($core->blog->name).' &rsaquo; <span class="page-title">'.__('Media manager').'</span>'.
 ' / '.(isset($core->media) ? $core->media->breadCrumb(html::escapeURL($page_url).'&amp;d=%s') : '').'</h2>';
 
 if (!$dir) {
@@ -98,13 +98,13 @@ if (!$dir) {
 }
 
 if ($post_id) {
-	echo '<p><strong>'.sprintf(__('Choose a file to attach to entry %s by clicking on %s.'),
-	'<a href="'.$core->getPostAdminURL($post_type,$post_id).'">'.html::escapeHTML($post_title).'</a>',
-	'<img src="images/plus.png" alt="'.__('Attach this file to entry').'" />').'</strong></p>';
+	echo '<div class="form-note info"><p>'.sprintf(__('Choose a file to attach to entry %s by clicking on %s.'),
+		'<a href="'.$core->getPostAdminURL($post_type,$post_id).'">'.html::escapeHTML($post_title).'</a>',
+		'<img src="images/plus.png" alt="'.__('Attach this file to entry').'" />').'</p></div>';
 }
 if ($popup) {
-	echo '<p><strong>'.sprintf(__('Choose a file to insert into entry by clicking on %s.'),
-	'<img src="images/plus.png" alt="'.__('Attach this file to entry').'" />').'</strong></p>';
+	echo '<div class="info"><p>'.sprintf(__('Choose a file to insert into entry by clicking on %s.'),
+		'<img src="images/plus.png" alt="'.__('Attach this file to entry').'" />').'</p></div>';
 }
 
 
@@ -112,11 +112,11 @@ $items = array_values(array_merge($dir['dirs'],$dir['files']));
 if (count($items) == 0) {
 	echo '<p><strong>'.__('No file.').'</strong></p>';
 } else {
-	$pager = new pager($page,count($items),$nb_per_page,10);
+	$pager = new dcPager($page,count($items),$nb_per_page,10);
 	
 	echo
 	'<div class="media-list">'.
-	'<p>'.__('Page(s)').' : '.$pager->getLinks().'</p>';
+	'<p>'.$pager->getLinks().'</p>';
 	
 	for ($i=$pager->index_start, $j=0; $i<=$pager->index_end; $i++, $j++)
 		echo mediaItemLine($items[$i],$j);
@@ -129,11 +129,11 @@ if (count($items) == 0) {
 
 # Empty remove form (for javascript actions)
 echo
-'<form id="media-remove-hide" action="'.html::escapeURL($page_url).'" method="post"><div class="clear">'.
+'<div class="vertical-separator"><form id="media-remove-hide" action="'.html::escapeURL($page_url).'" method="post"><div class="clear">'.
 form::hidden('rmyes',1).form::hidden('d',html::escapeHTML($d)).
 form::hidden('remove','').
 $core->formNonce().
-'</div></form>';
+'</div></form></div>';
 
 
 

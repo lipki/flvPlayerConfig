@@ -16,12 +16,12 @@ jsToolBar.prototype.elements.flvplayerconfig = {
 	icon:'index.php?pf=flvplayerconfig/icon.png',
 	fn:{},
 	fncall:{},
-	open_url:'plugin.php?p=flvplayerconfig&media=1&popup=1',
+	open_url:'plugin.php?p=flvplayerconfig&media=1&popup=1&plugin_id=dcLegacyEditor',
 	data:{},
 	popup:function(){
 		window.the_toolbar=this;
 		this.elements.flvplayerconfig.data={};
-		var p_win=window.open(this.elements.flvplayerconfig.open_url,'dc_popup','alwaysRaised=yes,dependent=yes,toolbar=yes,height=600,width=810,menubar=no,resizable=no,scrollbars=yes,status=no');
+		var p_win=window.open(this.elements.flvplayerconfig.open_url,'dc_popup','alwaysRaised=yes,dependent=yes,toolbar=yes,width=760,height=500,menubar=no,resizable=no,scrollbars=yes,status=no');
 	}
 };
 
